@@ -35,11 +35,12 @@ void main(List<String> arguments) async {
           (e) => e.key == element.key.toString() && e.value == element.value),
     ),
   );
+  var outPutPath = '${DateTime.now().millisecondsSinceEpoch / 1000}.json';
   if (arguments.length >= 2) {
-    final outPutPath = arguments[1];
-    final targetFile = File(outPutPath);
-    await targetFile
-        .writeAsString(jsonEncode(response.map((e) => e.attributes).toList()));
+    outPutPath = arguments[1];
   }
+  final targetFile = File(outPutPath);
+  await targetFile
+      .writeAsString(jsonEncode(response.map((e) => e.attributes).toList()));
   exit(0);
 }
